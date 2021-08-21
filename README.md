@@ -26,13 +26,20 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 ## Setup the Environment
 
 * Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+  
+  `python3 -m venv ~/.devops`
+  
+  `source ~/.devops/bin/activate`
+  
+* Run `make install` to install the necessary dependencies in the virtualenv
 
 ### Running `app.py`
 
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+3. Make predictions:  `./make_prediction.sh`
+4. Upload Docker image to Docker hub:  `./upload_docker.sh`
+5. Run in Kubernetes:  `./run_kubernetes.sh`
 
 ### Kubernetes Steps
 
@@ -40,3 +47,14 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 * Setup and Configure Kubernetes locally
 * Create Flask app in Container
 * Run via kubectl
+
+### Files
+* .circleci/config.yml - This is used for automated deployments in circleci
+* output_txt_files - These contain the output of the logs when running the `./run_docker.sh` and `./run_kubernetes.sh`
+* Dockerfile - This contains a set of commands that define a python based image.
+* Makefile - Contains a set of shell commands that make setup, installation and testing easier.
+* run_docker.sh - Shell script that contains the commands to build and run the docker image
+* make_prediction.sh - This shell script is responsible for sending input data to the containerized app via the appropriate port which is then used to make the prediction.
+* upload_docker.sh - pushes the docker image to docker hub.
+* run_kubernetes.sh - Runs the Docker Hub container with kubernetes
+
